@@ -1,0 +1,14 @@
+<div class="mb-3">
+  <label for="formGroupExampleInput" class="form-label"></label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="formGroupExampleInput" placeholder="Brand Search">
+</div>
+<div *ngIf="filterText.length>2" class="alert-primary">
+  {{filterText}} searched..
+</div>
+<div>
+  <ul class="list-group">
+    <button [class]="getAllBrandClass()" style="text-align: left;" routerLink="/cars">All Brands</button>
+    <button (click)="setCurrentBrand(brand)" routerLink="/cars/brand/{{brand.brandId}}"
+      *ngFor="let brand of brands | brandFilter:filterText" [class]="getCurrentBrandClass(brand)">{{brand.brandName}}</button>
+  </ul>
+</div>

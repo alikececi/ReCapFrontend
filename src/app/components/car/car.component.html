@@ -1,0 +1,34 @@
+<div *ngIf="dataLoaded==false" class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div>
+  <div class="mb-3" >
+    <label for="formGroupExampleInput" class="form-label"></label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="formGroupExampleInput" placeholder="Car Search">
+  </div>
+  <div *ngIf="filterText.length>2" class="alert-primary">
+    {{filterText}} searched..
+  </div>
+  <div class="row" *ngIf="dataLoaded==true">
+    <div *ngFor="let cardetail of carDetails | carFilter:filterText" class="card" style="width: 20rem;">
+      <img src="{{imageBasePath}}/{{cardetail.imagePath}}" class="card-img-top" alt="{{cardetail.descriptions}} Image" width="auto" height="auto">
+      <div  class="card-body">
+        <h5 class="card-title">{{cardetail.brandName}} {{cardetail.descriptions}} {{cardetail.modelYear}}</h5>
+      </div >
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Brand: {{cardetail.brandName}}</li>
+        <li class="list-group-item">Color: {{cardetail.colorName}}</li>
+        <li class="list-group-item">Model Year: {{cardetail.modelYear}}</li>
+        <li class="list-group-item">Price: {{cardetail.dailyPrice | currency}} </li>
+      </ul>
+      <div class="card-body">
+        <section style="float:left">
+          <button routerLink="/car/details/{{cardetail.carId}}" type="button" class="btn btn-primary">Detail</button>
+        </section>
+        <section style="float: right">
+          <button routerLink="/rental/{{cardetail.carId}}" type="button" class="btn btn-primary">Rent</button>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div>
+  <div class="mb-3">
+    <label for="formGroupExampleInput" class="form-label"></label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="formGroupExampleInput" placeholder="Search Color">
+  </div>
+  <div *ngIf="filterText.length>2" class="alert-primary">
+    {{filterText}} searched..
+  </div>
+</div>
+<div>
+  <ul class="list-group">
+    <button [class]="getAllColorClass()" routerLink="/cars">Tüm Renkler</button>
+    <button (click)="setCurrentColor(color)" routerLink="/cars/color/{{color.colorId}}"
+      *ngFor="let color of colors | colorFilter:filterText" [class]="getCurrentColorClass(color)">{{color.colorName}}</button>
+</ul>
+</div>
