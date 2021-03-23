@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://localhost:44347/api/',
-  baseUrl: 'https://localhost:44347/api/carimages/getall',
+  baseUrl: 'https://localhost:44347/',
 };
 
 /*
